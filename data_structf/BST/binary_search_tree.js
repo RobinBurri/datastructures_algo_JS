@@ -8,80 +8,80 @@
 
 class Node {
     constructor(val) {
-        this.val = val;
-        this.left = null;
-        this.right = null;
+        this.val = val
+        this.left = null
+        this.right = null
     }
 }
 
 class BinarySearchTree {
     constructor() {
-        this.root = null;
+        this.root = null
     }
 
     insert(value) {
-        const nn = new Node(value);
+        const nn = new Node(value)
         if (!this.root) {
-            this.root = nn;
-            return;
+            this.root = nn
+            return
         }
-        let tmp = this.root;
+        let tmp = this.root
         while (true) {
             if (nn.val > tmp.val) {
                 if (tmp.right) {
-                    tmp = tmp.right;
+                    tmp = tmp.right
                 } else {
-                    tmp.right = nn;
-                    return;
+                    tmp.right = nn
+                    return
                 }
             } else {
                 if (tmp.left) {
-                    tmp = tmp.left;
+                    tmp = tmp.left
                 } else {
-                    tmp.left = nn;
-                    return;
+                    tmp.left = nn
+                    return
                 }
             }
         }
     }
     find(value) {
         if (!this.root) {
-            return false;
+            return false
         }
-        let tmp = this.root;
+        let tmp = this.root
         while (true) {
             if (tmp.val === value) {
-                return true;
+                return true
             }
             if (value > tmp.val) {
                 if (tmp.right) {
-                    tmp = tmp.right;
+                    tmp = tmp.right
                 } else {
-                    return false;
+                    return false
                 }
             } else {
                 if (tmp.left) {
-                    tmp = tmp.left;
+                    tmp = tmp.left
                 } else {
-                    return false;
+                    return false
                 }
             }
         }
     }
     find2(value) {
-        if (!this.root) return false;
-        let current = this.root;
-        let found = false;
+        if (!this.root) return false
+        let current = this.root
+        let found = false
         while (current && !found) {
             if (value < current.val) {
-                current = current.left;
+                current = current.left
             } else if (value > current.val) {
-                current = current.right;
+                current = current.right
             } else {
-                return true;
+                return true
             }
         }
-        return false;
+        return false
     }
 }
 
