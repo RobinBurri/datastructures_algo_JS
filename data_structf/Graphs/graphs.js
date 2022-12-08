@@ -56,9 +56,9 @@ class Graph {
     }
 
     printGraph() {
-        for (const vertex of this.adjList) {
-            console.log(vertex)
-        }
+        // for (const vertex of this.adjList) {
+        console.log(this.adjList)
+        // }
     }
 }
 
@@ -77,8 +77,5 @@ mg.addEdge('Basel', 'Berne')
 mg.addEdge('Geneva', 'Berne')
 mg.addEdge('Geneva', 'Lausanne')
 mg.addEdge('Paris', 'Lausanne')
-
 mg.addEdge('Sion', 'Lausanne')
-mg.removeEdge('Sion', 'Lausanne')
-mg.removeVertex('Paris')
 mg.printGraph()
