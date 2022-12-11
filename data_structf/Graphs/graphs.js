@@ -14,51 +14,31 @@
  * ?    |V| = number of verticies   |E| = number of edges
  */
 
-/**
- * ADJACENCY LIST UNDIRECTED
- */
-
+//  ADJACENCY LIST UNDIRECTED
 class Graph {
     constructor() {
-        this.adjList = new Map()
+        this.adjList = {}
+    }
+    addVertex(vName) {
+        if (!this.adjList[vName]) this.adjList[vName] = []
+    }
+    addEdge(v1, v2) {
+        this.adjList[v1].push(v2)
+        this.adjList[v2].push(v1)
+    }
+    removeEdge(v1, v2) {
+        this.adjList[v1] = this.adjList[v1].filter((v) => v !== v2)
+        this.adjList[v2] = this.adjList[v2].filter((v) => v !== v1)
     }
 
-    addVertex(vertexName) {
-        if (!this.adjList.has(vertexName)) this.adjList.set(vertexName, [])
-    }
-
-    addEdge(vertexName1, vertexName2) {
-        if (this.adjList.has(vertexName1) && this.adjList.has(vertexName2)) {
-            const vertex1prevValues = this.adjList.get(vertexName1)
-            vertex1prevValues.push(vertexName2)
-            this.adjList.set(vertexName1, vertex1prevValues)
-            const vertex2prevValues = this.adjList.get(vertexName2)
-            vertex2prevValues.push(vertexName1)
-            this.adjList.set(vertexName2, vertex2prevValues)
+    removeVertex(vName) {
+        if (this.adjList[vName]) {
+            while (this.adjList[vName].length) {
+                const v = this.adjList[vName].pop()
+                this.removeEdge(vName, v)
+            }
+            delete this.adjList[vName]
         }
-    }
-
-    removeVertex(vertexName) {
-        this.adjList.delete(vertexName)
-    }
-
-    removeEdge(vertexName1, vertexName2) {
-        if (this.adjList.has(vertexName1) && this.adjList.has(vertexName2)) {
-            const vertex1prevValues = this.adjList.get(vertexName1)
-            const index = vertex1prevValues.indexOf(vertexName2)
-            vertex1prevValues.splice(index, 1)
-            this.adjList.set(vertexName1, vertex1prevValues)
-            const vertex2prevValues = this.adjList.get(vertexName2)
-            const index2 = vertex2prevValues.indexOf(vertexName1)
-            vertex2prevValues.splice(index2, 1)
-            this.adjList.set(vertexName2, vertex2prevValues)
-        }
-    }
-
-    printGraph() {
-        // for (const vertex of this.adjList) {
-        console.log(this.adjList)
-        // }
     }
 }
 
@@ -78,4 +58,8 @@ mg.addEdge('Geneva', 'Berne')
 mg.addEdge('Geneva', 'Lausanne')
 mg.addEdge('Paris', 'Lausanne')
 mg.addEdge('Sion', 'Lausanne')
-mg.printGraph()
+mg.removeEdge('Berne', 'Geneva')
+mg.removeEdge('Paris', 'Lausanne')
+mg.removeVertex('Paris')
+mg.removeVertex('Sion')
+console.log(mg)
