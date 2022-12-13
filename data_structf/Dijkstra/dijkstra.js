@@ -28,6 +28,9 @@ class PriorityQueue {
 	sort() {
 		this.values.sort((a, b) => (a.priority < b.priority));
 	}
+	size() {
+		return this.values.length
+	}
 }
 
 /**\
@@ -41,7 +44,7 @@ class WeightedGraph {
 	}
 
 	addVertex(vName) {
-		if (!this.adjList[vName]) this.adjList[vName] = [];
+		if (!this.adjList[vName]) this.adjList[vName] = [];s
 	}
 
 	addEdge(v1, v2, weight) {
@@ -53,6 +56,7 @@ class WeightedGraph {
 		let distanceTable = {};
 		let previous = {};
 		let visited = [];
+
 		let distanceArray = Object.keys(this.adjList);
 		for (const key of distanceArray) {
 			distanceTable[key] = { distance: Infinity };
@@ -63,6 +67,10 @@ class WeightedGraph {
 		distanceArray.splice(idx, 1)
 		this.pq.enqueue(startVertex, 0)
 		distanceArray.forEach(val => this.pq.enqueue(val, Infinity))
+		while (this.pq.size() !== 0){
+			let currentVertex = this.pq.dequeue()
+			if (currentVertex.val === endVertex) return
+		}
 
 	}
 }
