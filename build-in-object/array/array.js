@@ -1,5 +1,5 @@
 /**
- * Array.prototype.concat()
+ * * Array.prototype.concat()
  * ? return NEW ARRAY
  */
 
@@ -8,9 +8,21 @@ const array2 = ['d', 'e', 'f'];
 const array3 = array1.concat(array2);
 // Expected output: Array ["a", "b", "c", "d", "e", "f"]
 
+/**
+ * * Array.prototype.filter()
+ * ? return NEW ARRAY
+ */
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+console.log(result);
+// Expected output: Array ["exuberant", "destruction", "present"]
+
 
 /**
- * Array.prototype.fill()
+ * * Array.prototype.fill()
  * ! return MODIFIED ARRAY
  */
 
